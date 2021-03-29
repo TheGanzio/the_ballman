@@ -26,5 +26,14 @@ body {
 }
 
 h1 {
-  align-content: center;
+  align: center;
+}
+
+@media (min-height: 320px) {
+  .ui.footer.form-page { 
+    position: flex;
+    bottom: 0;
+    left: 0%;
+    width: 100%;
+  }
 }

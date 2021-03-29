@@ -15,7 +15,7 @@ const log = (i, count, ms) => {
     
 }
 
- function parseNew(url, elems) {
+ function parseNewHromadske(url, elems) {
     return new Promise((resolve, reject) => {
       unirest.get(url).end(({ body, error }) => {
         const $ = cheerio.load(body);
@@ -27,6 +27,8 @@ const log = (i, count, ms) => {
             const image =$(elems.image).attr('src')
     
                 const post = {
+                test: 'test',
+                url: url,
                 title: title,
                 preDescription: preDescription,
                 description: description,
@@ -43,7 +45,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinks(url, className, maxSize = 10) {
+function parseLinksHromadske(url, className, maxSize = 20) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -62,12 +64,12 @@ function parseLinks(url, className, maxSize = 10) {
     })
 }
 
-async function getPosts(links) {
+async function getPostsHromadske(links) {
     let posts = []
         let count = links.length
 
         for (let i=0; i<count; i++) {
-            const post = await parseNew(links[i], elems.hromadske).then(post => post)
+            const post = await parseNewHromadske(links[i], elems.hromadske).then(post => post)
             posts.push(post)
             await log(i, count, 1000)
             console.log(post)
@@ -79,4 +81,4 @@ async function getPosts(links) {
     })
 }
 
-export  { parseNew, parseLinks, getPosts }
+export  { parseNewHromadske, parseLinksHromadske, getPostsHromadske }

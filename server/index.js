@@ -1,30 +1,53 @@
-import { parseNew, getPosts, parseLinks } from './parseNew.js'
+import { parseNewUnian, getPostsUnian, parseLinksUnian } from './parseNewUnian.js'
+import { parseNewHromadske, getPostsHromadske, parseLinksHromadske } from './parseNewHromadske.js'
 import fs from 'fs'
 import elems from './config.js'
 
-const hromadske = 'https://hromadske.ua/posts/zyizd-suddiv-obrav-troh-chleniv-radi-suddiv-ukrayini-ale-provaliv-golosuvannya-za-svogo-predstavnika-u-ksu'
-const tsn = 'https://tsn.ua/ukrayina/cifrovi-vodiyski-dokumenti-v-diyi-pririvnyani-do-yihnih-fizichnih-analogiv-1727551.html'
-const unian = 'https://www.unian.ua/science/klonuvannya-u-ssha-vpershe-stvorili-klon-chornonogogo-thora-novini-11327990.html'
+const MongoClient = require('mongodb').MongoClient
 
-const saveResult = json => {
-    fs.writeFile('result.json', json, err => {
+const mongoClient = new MongoClient('')
+
+
+const saveResultHromadske = json => {
+    fs.writeFile('resultHromadske.json', json, err => {
         console.log('Saved!')
         if (err) console.log('not saved')
     })
 }
 
+const saveResultUnian = json => {
+    fs.writeFile('resultUnian.json', json, err => {
+        console.log('Saved!')
+        if (err) console.log('not saved')
+    })
+}
 
-//parseNew(hromadske, elems.hromadske)
-
-parseLinks('https://hromadske.ua/', '.NewsBlock-container a')
+parseLinksHromadske('https://hromadske.ua/', '.NewsBlock-container a')
 .then(links => {
-    getPosts(links).then(posts => saveResult(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
+    getPostsHromadske(links).then(posts => saveResultHromadske(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
 })
 .catch(e => console.log(e))
 
-//parseLinks('https://hromadske.ua/polityka', '.CardsList-wrapper.CardsList-wrapper_theme_light a')
+parseLinksUnian('https://www.unian.ua/science', '.list-thumbs a')
+.then(links => {
+    getPostsUnian(links).then(posts => saveResultUnian(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
+})
+.catch(e => console.log(e))
 
-// getPosts('https://hromadske.ua/posts/5-rokiv-za-zgvaltuvannya-12-za-vikradennya-avto-yaki-prioriteti-v-chinnomu-kriminalnomu-kodeksi')
+function parseH() {
+    parseLinksHromadske('https://hromadske.ua/', '.NewsBlock-container a')
+.then(links => {
+    getPostsHromadske(links).then(posts => saveResultHromadske(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
+})
+.catch(e => console.log(e))
+console.log('Done!')
+}
+
+function parseU() {
+    console.log('kek')
+}
+
+setInterval(parseH, 1200000)
 
 
 
