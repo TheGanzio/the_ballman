@@ -35,6 +35,7 @@ class App extends Component {
 
   UNSAFE_componentWillMount() {
       this.fetchPostsHromadske()
+      this.props.genre.genre = 'UKR'
   }
 
   genreText(s) {
@@ -42,7 +43,7 @@ class App extends Component {
       case 'IT':
         return 'Новини IT та науки'
       case 'UKR':
-        return 'Новини України(Люблю Оленку)'
+        return 'Новини України'
       case 'WORLD':
         return 'Новини світу'
       case 'EXP':
@@ -56,14 +57,14 @@ class App extends Component {
   render() {
     const { posts } = this.props
     const { items } = posts
-    if (this.props.genre.genre === 'IT') {
+    if (this.props.genre.genre === 'UKR') {
     return (
       <Container>
         <h1 className="ui header">The BellMan</h1>
         <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) }</h3>
         <div>
           <Button.Group basic>
-            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна(Люблю Оленку)</Button>
+            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
@@ -91,14 +92,14 @@ class App extends Component {
   </div>
 </div> */}
       </Container>
-    )} else if (this.props.genre.genre === 'UKR') {
+    )} else if (this.props.genre.genre === 'IT') {
       return (
         <Container>
           <h1 className="ui header">The BellMan</h1>
           <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) }</h3>
           <div>
             <Button.Group basic>
-            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна(Люблю Оленку)</Button>
+            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
@@ -133,7 +134,7 @@ class App extends Component {
           <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) }</h3>
           <div>
             <Button.Group basic>
-            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна(Люблю Оленку)</Button>
+            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>

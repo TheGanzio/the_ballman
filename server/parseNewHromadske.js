@@ -70,6 +70,9 @@ async function getPostsHromadske(links) {
 
         for (let i=0; i<count; i++) {
             const post = await parseNewHromadske(links[i], elems.hromadske).then(post => post)
+            if (post.image == undefined) {
+                post.image = 'https://www.5.ua/media/pictures/original/146560.jpg?t=1534932390'
+            }
             posts.push(post)
             await log(i, count, 1000)
             console.log(post)

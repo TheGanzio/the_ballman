@@ -3,9 +3,9 @@ import { parseNewHromadske, getPostsHromadske, parseLinksHromadske } from './par
 import fs from 'fs'
 import elems from './config.js'
 
-const MongoClient = require('mongodb').MongoClient
+// const MongoClient = require('mongodb').MongoClient
 
-const mongoClient = new MongoClient('')
+// const mongoClient = new MongoClient('')
 
 
 const saveResultHromadske = json => {
@@ -28,26 +28,26 @@ parseLinksHromadske('https://hromadske.ua/', '.NewsBlock-container a')
 })
 .catch(e => console.log(e))
 
-parseLinksUnian('https://www.unian.ua/science', '.list-thumbs a')
-.then(links => {
-    getPostsUnian(links).then(posts => saveResultUnian(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
-})
-.catch(e => console.log(e))
+// parseLinksUnian('https://www.unian.ua/science', '.list-thumbs a')
+// .then(links => {
+//     getPostsUnian(links).then(posts => saveResultUnian(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
+// })
+// .catch(e => console.log(e))
 
-function parseH() {
-    parseLinksHromadske('https://hromadske.ua/', '.NewsBlock-container a')
-.then(links => {
-    getPostsHromadske(links).then(posts => saveResultHromadske(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
-})
-.catch(e => console.log(e))
-console.log('Done!')
-}
+// function parseH() {
+//     parseLinksHromadske('https://hromadske.ua/', '.NewsBlock-container a')
+// .then(links => {
+//     getPostsHromadske(links).then(posts => saveResultHromadske(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
+// })
+// .catch(e => console.log(e))
+// console.log('Done!')
+// }
 
-function parseU() {
-    console.log('kek')
-}
+// function parseU() {
+//     console.log('kek')
+// }
 
-setInterval(parseH, 1200000)
+// setInterval(parseH, 1200000)
 
 
 
