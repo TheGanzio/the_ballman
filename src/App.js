@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Post from './components/Post';
-import posts from './posts.json';
 import axios from 'axios'
 import { connect } from 'react-redux'
 import { Container, Header, Button, Label, Item } from 'semantic-ui-react'
@@ -13,23 +12,53 @@ class App extends Component {
     super(props)
   }
 
+  // fetchPostsHromadske() {
+  //   const { setPosts } = this.props;
+  //   setPosts([]);
+  //   setPosts(data); 
+  // }
+
   fetchPostsHromadske() {
     const { setPosts } = this.props;
     setPosts([]);
-    axios
-      .get('https://60343d97843b1500179324f4.mockapi.io/postsHromadske')
-      .then(({ data }) => {
-        setPosts(data);
+    axios.get('/ukr')
+      .then(({data}) => {
+        setPosts(data)
+        console.log('Data has been received!!');
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
       });
+    // axios
+    //   .get('https://60343d97843b1500179324f4.mockapi.io/postsUnian')
+    //   .then(({ data }) => {
+    //     setPosts(data);
+    //   });
   }
 
   fetchPostsUnian() {
     const { setPosts } = this.props;
     setPosts([]);
-    axios
-      .get('https://60343d97843b1500179324f4.mockapi.io/postsUnian')
-      .then(({ data }) => {
-        setPosts(data);
+    axios.get('/it')
+      .then(({data}) => {
+        setPosts(data)
+        console.log('Data has been received!!');
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
+      });
+  }
+
+  fetchPostsKoresp() {
+    const { setPosts } = this.props;
+    setPosts([]);
+    axios.get('/world')
+      .then(({data}) => {
+        setPosts(data)
+        console.log('Data has been received!!');
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
       });
   }
 
@@ -52,8 +81,6 @@ class App extends Component {
     }
   }
 
-  
-  
   render() {
     const { posts } = this.props
     const { items } = posts
@@ -101,7 +128,7 @@ class App extends Component {
             <Button.Group basic>
             <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
-            <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
+            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp()  }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
             </Button.Group>
           </div>
@@ -136,7 +163,7 @@ class App extends Component {
             <Button.Group basic>
             <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
-            <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
+            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
             </Button.Group>
           </div>
