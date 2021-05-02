@@ -1,1 +1,1 @@
-web: cd ./server & npm start & wait -n
+web: cd server & npm start
