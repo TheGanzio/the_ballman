@@ -87,3 +87,6 @@ getData()
 
 
 export { getData }
+
+
+export default data

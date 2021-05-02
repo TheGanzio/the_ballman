@@ -25,6 +25,7 @@ let data = ''
 
 
 router.get('/', (req, res) => {
+
     Posts.find()
         .then((data) => {
             console.log('Data: ', data);
@@ -34,5 +35,3 @@ router.get('/', (req, res) => {
             console.log('error: ', daerrorta);
         });
 });
-
-export default data

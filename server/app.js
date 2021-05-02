@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-const PORT = process.env.PORT || 3030; 
+const PORT = process.env.PORT || 3030
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -76,3 +76,7 @@ app.use('/IT', (req, res) => {
 app.listen(PORT, console.log(`Server is starting at ${PORT}`));
 
 module.exports = app;
+
+
+
+
