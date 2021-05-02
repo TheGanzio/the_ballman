@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-const PORT = process.env.PORT || 3030
+const PORT = process.env.PORT
 
 app.use(express.static(path.join(__dirname, 'build')));
 

@@ -20,7 +20,7 @@
     "web-vitals": "^1.1.0"
   },
   "scripts": {
-    "start": "cd server && npm start",
+    "start": "cd server && node app",
     "startScans": "cd src && node runScans.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
