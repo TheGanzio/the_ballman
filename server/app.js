@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 var app = express();
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3030
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -33,6 +33,7 @@ const PostsSchema = new mongoose.Schema({
 const Ukraine = mongoose.model('Ukraine', PostsSchema)
 const IT = mongoose.model('IT', PostsSchema)
 const World = mongoose.model('World', PostsSchema)
+const Korona = mongoose.model('Korona', PostsSchema)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -64,6 +65,18 @@ app.use('/IT', (req, res) => {
   app.use('/world', (req, res) => {
     console.log('Api')
         World.find()
+          .then((data) => {
+              console.log('Data: ', data);
+              res.json(data);
+          })
+          .catch((error) => {
+              console.log('error: ', daerrorta);
+          });
+  });
+
+  app.use('/korona', (req, res) => {
+    console.log('Api')
+        Korona.find()
           .then((data) => {
               console.log('Data: ', data);
               res.json(data);

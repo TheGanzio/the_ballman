@@ -62,6 +62,19 @@ class App extends Component {
       });
   }
 
+  fetchPostsKorona() {
+    const { setPosts } = this.props;
+    setPosts([]);
+    axios.get('/korona')
+      .then(({data}) => {
+        setPosts(data)
+        console.log('Data has been received!!');
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
+      });
+  }
+
   UNSAFE_componentWillMount() {
       this.fetchPostsHromadske()
       this.props.genre.genre = 'UKR'
@@ -72,6 +85,8 @@ class App extends Component {
       case 'IT':
         return 'Новини IT та науки'
       case 'UKR':
+        return 'Новини України'
+      case 'COR':
         return 'Новини України'
       case 'WORLD':
         return 'Новини світу'
@@ -93,8 +108,9 @@ class App extends Component {
           <Button.Group basic>
             <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
-            <Button onClick={() => this.props.changeGenre('WORLD') }>Світ</Button>
+            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
+            <Button onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
           </Button.Group>
         </div>
         <Item.Group divided>
@@ -128,8 +144,44 @@ class App extends Component {
             <Button.Group basic>
             <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
-            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp()  }>Світ</Button>
+            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
+            <Button onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
+            </Button.Group>
+          </div>
+          <Item.Group divided>
+          {
+            ( items.map(({ url, title, description, preDescription, authorName, image }, key) => (
+              <Post
+                key={key}
+                url={url}
+                title={title}
+                preDescription={preDescription}
+                description={description}
+                authorName={authorName}
+                image={image}
+              /> )
+            ))
+          }
+          </Item.Group>
+          {/* <div class="ui inverted vertical footer segment form-page">
+  <div class="ui container">
+  The BellMan 2021. All Rights Reserved
+  </div>
+</div> */}
+        </Container>
+    )} else if (this.props.genre.genre === 'IT') {
+      return (
+        <Container>
+          <h1 className="ui header">The BellMan</h1>
+          <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) }</h3>
+          <div>
+            <Button.Group basic>
+            <Button onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
+            <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
+            <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
+            <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
+            <Button onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
             </Button.Group>
           </div>
           <Item.Group divided>
@@ -165,6 +217,7 @@ class App extends Component {
             <Button onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button onClick={() => this.props.changeGenre('EXP') }>Експертна думка</Button>
+            <Button onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
             </Button.Group>
           </div>
           <Item.Group divided>
@@ -189,8 +242,7 @@ class App extends Component {
 </div> */}
         </Container>
       )
-    }
-    
+    } 
   }
 }
 

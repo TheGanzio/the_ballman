@@ -47,7 +47,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKoresp(url, className, maxSize = 10) {
+function parseLinksKoresp(url, className, maxSize = 20) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -84,6 +84,8 @@ async function getPostsKoresp(links) {
             }
             if(post.description == '') {
                 post.description = post.desription_2
+            } else {
+                post.description = post.description
             }
             post.id = post.id+1
             posts.push(post)

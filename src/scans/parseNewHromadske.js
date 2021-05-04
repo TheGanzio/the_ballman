@@ -19,17 +19,22 @@ const log = (i, count, ms) => {
  function parseNewHromadske(url, elems) {
     return new Promise((resolve, reject) => {
       unirest.get(url).end(({ body, error }) => {
+        // let i = 1
+        // let count = 1
+        // log(i, count, 5000)
         const $ = cheerio.load(body);
+        
+        
         let id = 0
-  
-        const title =$(elems.title).text().trim()
+
+            const title =$(elems.title).text().trim()
             const preDescription =$(elems.preDescription).text().trim()
             const description =$(elems.description).text().trim()
             const authorName =$(elems.authorName).text().trim().trim()
             const image =$(elems.image).attr('src')
     
                 const post = {
-                    id: id,
+                id: id,
                 url: url,
                 title: title,
                 preDescription: preDescription,
@@ -47,7 +52,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksHromadske(url, className, maxSize = 10) {
+function parseLinksHromadske(url, className, maxSize = 20) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -70,7 +75,6 @@ function parseLinksHromadske(url, className, maxSize = 10) {
 async function getPostsHromadske(links) {
     let posts = []
         let count = links.length
-
         for (let i=0; i<count; i++) {
             const post = await parseNewHromadske(links[i], elems.hromadske).then(post => post)
             if (post.image == undefined) {
@@ -78,7 +82,6 @@ async function getPostsHromadske(links) {
             }
             post.id = post.id+1
             posts.push(post)
-            axios.post('https://60343d97843b1500179324f4.mockapi.io/postsHromadske', post)
             await log(i, count, 1000)
             console.log(post)
         }

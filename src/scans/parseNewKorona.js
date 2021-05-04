@@ -16,12 +16,11 @@ const log = (i, count, ms) => {
     
 }
 
- function parseNewUnian(url, elems) {
+ function parseNewKorona(url, elems) {
     return new Promise((resolve, reject) => {
-      unirest.get(url).headers({'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'accept-encoding': 'gzip, deflate, br',
-      'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'}).end(({ body, error }) => {
-        const $ = cheerio.load(body);
+      unirest.get(url).end(({ body, error }) => {
         let id = 0
+        const $ = cheerio.load(body);
   
         const title =$(elems.title).text().trim()
             const preDescription =$(elems.preDescription).text().trim()
@@ -48,12 +47,11 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksUnian(url, className, maxSize = 20) {
+function parseLinksKorona(url, className, maxSize = 20) {
     return new Promise((resolve, reject) => {
         let links = []
 
-        unirest.get(url).headers({'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9', 'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7'}).end(({ body, error }) => {
+        unirest.get(url).end(({ body, error }) => {
             if (error) reject(error)
 
             const $ = cheerio.load(body)
@@ -68,29 +66,47 @@ function parseLinksUnian(url, className, maxSize = 20) {
     })
 }
 
-async function getPostsUnian(links) {
+
+async function getPostsKorona(links) {
     let posts = []
-        let count = links.length
+    let titles = []
+    let index = 0
+    let count = links.length
+
+    let currentData = '';
+    let currentPost = []
 
         for (let i=0; i<count; i++) {
-            const post = await parseNewUnian(links[i], elems.unian || elems.hromadske).then(post => post)
-            if (post.title === '') {
+            const post = await parseNewKorona(links[i], elems.korona).then(post => post)
+            index = index++
+            titles.push(post.title)
+
+            if (post.image == undefined) {
+                post.image = 'https://www.ratusha.if.ua/wp-content/uploads/2020/09/5ebcef3f2c023-covid19smejpg.jpg'
+            }
+
+            if(post.authorName == '') {
+                post.authorName = 'korrespondent.net'
+            }
+
+            if (titles[i] == titles[i-1]) {
+                console.log('Duplicate')
+                post.title = ''
+            }
+
+            if (post.title == '') {
                 continue
             }
-            if (links[i] === links[i+1]) {
-                continue
-            }
-            post.id = post.id+1
+
             posts.push(post)
-            axios.post('https://60343d97843b1500179324f4.mockapi.io/postsUnian', post)
             await log(i, count, 1000)
             console.log(post)
         }
-        
+    
         return new Promise((resolve, reject) => {
         if (!posts.length) reject({error: 'empty'})
         resolve(posts)
     })
 }
 
-export  { parseNewUnian, parseLinksUnian, getPostsUnian }
+export  { parseNewKorona, parseLinksKorona, getPostsKorona }
