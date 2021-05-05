@@ -15,6 +15,8 @@ mongoose.connect('mongodb+srv://Nikolaiev:newsagregator@cluster0.qcstf.azure.mon
 
 const PostsSchema = new mongoose.Schema({
   url: String,
+  time: String,
+  readNext: String,
   title: String,
   preDescription: String,
   description: String,
@@ -33,7 +35,7 @@ function getData() {
 
    const saveResultHromadske = json => {
     Ukraine.deleteMany({}).then(() => console.log('Ukraine posts are deleted')).catch(e => console.log(e))
-    console.log(json)
+    // console.log(json)
     Ukraine.insertMany(JSON.parse(json), err => {
         console.log('Saved!')
         if (err) console.log(err)
@@ -42,7 +44,7 @@ function getData() {
     
     const saveResultUnian = json => {
       IT.deleteMany({}).then(() => console.log('IT posts are deleted')).catch(e => console.log(e))
-      console.log(json)
+      // console.log(json)
       IT.insertMany(JSON.parse(json), err => {
           console.log('Saved!')
           if (err) console.log(err)
@@ -51,7 +53,7 @@ function getData() {
 
     const saveResultKoresp = json => {
       World.deleteMany({}).then(() => console.log('World posts are deleted')).catch(e => console.log(e))
-      console.log(json)
+      // console.log(json)
       World.insertMany(JSON.parse(json), err => {
           console.log('Saved!')
           if (err) console.log(err)
@@ -60,7 +62,7 @@ function getData() {
 
     const saveResultKorona = json => {
         Korona.deleteMany({}).then(() => console.log('Korona posts are deleted')).catch(e => console.log(e))
-        console.log(json)
+        // console.log(json)
         Korona.insertMany(JSON.parse(json), err => {
             console.log('Saved!')
             if (err) console.log(err)
@@ -91,8 +93,8 @@ function getData() {
     })
     .catch(e => console.log(e))
 
-    date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-    console.log(date)
+    // const date = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+    // console.log(date)
 
 }
 

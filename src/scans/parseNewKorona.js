@@ -27,10 +27,13 @@ const log = (i, count, ms) => {
             const description =$(elems.description).text().trim()
             const authorName =$(elems.authorName).text().trim().trim()
             const image =$(elems.image).attr('src')
+            const time =$(elems.time).text().trim()
+            const readNext = '...Читати далі'
     
                 const post = {
                 id: id,
-                currenctDate: currentDate,
+                time: time,
+                readNext: readNext,
                 url: url,
                 title: title,
                 preDescription: preDescription,
@@ -48,7 +51,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKorona(url, className, maxSize = 30) {
+function parseLinksKorona(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -92,9 +95,15 @@ async function getPostsKorona(links) {
                 post.title = ''
             }
 
+            
             if (post.title == '') {
                 continue
             }
+
+            let str = post.time
+            let str1 = str.split(',')[1]
+            let str2 = str.split('1, ')[1]
+            post.time = str1 + ', ' + str2
 
             posts.push(post)
             await log(i, count, 5000)

@@ -20,7 +20,6 @@ const log = (i, count, ms) => {
     return new Promise((resolve, reject) => {
         unirest.get(url).end(({ body, error }) => {
         let $ = cheerio.load(body);
-        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
         $ = cheerio.load(body);
     
           const title =$(elems.title).text().trim()
@@ -28,10 +27,13 @@ const log = (i, count, ms) => {
               const description =$(elems.description).text().trim()
               const authorName =$(elems.authorName).text().trim().trim()
               const image =$(elems.image).attr('src')
+              const time =$(elems.time).attr('title')
+              const readNext = '...Читати далі'
       
                   const post = {
                   url: url,
-                  currentDate: currentDate,
+                  readNext: readNext,
+                  time: time,
                   title: title,
                   preDescription: preDescription,
                   description: description,
@@ -48,7 +50,7 @@ const log = (i, count, ms) => {
       });
     }
 
-function parseLinksHromadske(url, className, maxSize = 100) {
+function parseLinksHromadske(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -90,9 +92,13 @@ async function getPostsHromadske(links) {
                 continue
             }
 
+            if (post.time == undefined) {
+                post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            }
+
             posts.push(post)
             await log(i, count, 1000)
-            console.log(post)
+            // console.log(post)
         }
         
         return new Promise((resolve, reject) => {

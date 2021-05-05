@@ -19,6 +19,8 @@ mongoose.connection.on('connected', () => {
 
 const PostsSchema = new mongoose.Schema({
     url: String,
+    time: String,
+    readNext: String,
     title: String,
     preDescription: String,
     description: String,

@@ -118,14 +118,15 @@ class App extends Component {
         </div>
         <Item.Group divided>
         {
-          ( items.map(({ url, title, description, preDescription, authorName, image, test }, key) => (
+          ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
             <Post
             key={key}
-            test={test}
+            readNext={readNext}
+            time={time}
             url={url}
             title={title}
-            preDescription={`${preDescription.substring(0, 540)}...Читати далі`}
-            description={`${description.substring(0, 540)}...Читати далі`}
+            preDescription={`${preDescription.substring(0, 540)}`}
+            description={`${description.substring(0, 540)}`}
             authorName={authorName}
             image={image}
             /> )
@@ -154,13 +155,15 @@ class App extends Component {
           </div>
           <Item.Group divided>
           {
-            ( items.map(({ url, title, description, preDescription, authorName, image }, key) => (
+            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
+                time={time}
+                readNext={readNext}
                 url={url}
                 title={title}
-                preDescription={`${preDescription.substring(0, 540)}...Читати далі`}
-                description={`${description.substring(0, 540)}...Читати далі`}
+                preDescription={`${preDescription.substring(0, 540)}`}
+                description={`${description.substring(0, 540)}`}
                 authorName={authorName}
                 image={image}
               /> )
@@ -189,13 +192,15 @@ class App extends Component {
           </div>
           <Item.Group divided>
           {
-            ( items.map(({ url, title, description, preDescription, authorName, image }, key) => (
+            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
+                time={time}
+                readNext={readNext}
                 url={url}
                 title={title}
-                preDescription={`${preDescription.substring(0, 540)}...Читати далі`}
-                description={`${description.substring(0, 540)}...Читати далі`}
+                preDescription={`${preDescription.substring(0, 540)}`}
+                description={`${description.substring(0, 540)}`}
                 authorName={authorName}
                 image={image}
               /> )
@@ -225,13 +230,15 @@ class App extends Component {
           </div>
           <Item.Group divided>
           {
-            ( items.map(({ url, title, description, preDescription, authorName, image }, key) => (
+            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
               key={key}
+              time={time}
+              readNext={readNext}
               url={url}
               title={title}
-              preDescription={`${preDescription.substring(0, 540)}...Читати далі`}
-              description={`${description.substring(0, 540)}...Читати далі`}
+              preDescription={`${preDescription.substring(0, 540)}`}
+              description={`${description.substring(0, 540)}`}
               authorName={authorName}
               image={image}
               /> )

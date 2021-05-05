@@ -28,9 +28,13 @@ const log = (i, count, ms) => {
             const description =$(elems.description).text().trim()
             const authorName =$(elems.authorName).text().trim().trim()
             const image =$(elems.image).attr('src')
+            const time =$(elems.time).text().trim()
+            const readNext = '...Читати далі'
     
                 const post = {
                 id: id,
+                readNext: readNext,
+                time: time,
                 url: url,
                 title: title,
                 preDescription: preDescription,
@@ -48,7 +52,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksUnian(url, className, maxSize = 30) {
+function parseLinksUnian(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -80,9 +84,11 @@ async function getPostsUnian(links) {
             if (links[i] === links[i+1]) {
                 continue
             }
-            post.id = post.id+1
+
+            if (post.time == undefined) {
+                post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            }
             posts.push(post)
-            axios.post('https://60343d97843b1500179324f4.mockapi.io/postsUnian', post)
             await log(i, count, 1000)
             // console.log(post)
         }

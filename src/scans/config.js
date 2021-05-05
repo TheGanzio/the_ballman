@@ -4,7 +4,8 @@ const elems = {
         preDescription: '.article_news.next-article h2',
         description: '.newsFull_text',
         authorName:'.newsFull_header_infoItems .author_name',
-        image: '.newsFull_body img'
+        image: '.newsFull_body img',
+        time: '.newsFull_header .time'
     },
 
     tsn: {
@@ -12,7 +13,8 @@ const elems = {
         preDescription: '.c-card__lead',
         description: '.c-share-extra-port p',
         authorName: '.c-author-dl',
-        image: '.article-text img'
+        image: '.article-text img',
+        time: '.article__info .article__info-item.time'
     },
 
     unian: {
@@ -20,7 +22,8 @@ const elems = {
         preDescription: '.article__like-h2',
         description: '.article-text p',
         authorName: '.article__author--bottom .article__author-name',
-        image: '.article-text img'
+        image: '.article-text img',
+        time: '.article__info .article__info-item.time'
     },
 
     koresp: {
@@ -30,7 +33,8 @@ const elems = {
         description: '.post-item__text',
         description_2: '.post-item__text div',
         authorName: '.article__author',
-        image: '.post-item__big-photo-img'
+        image: '.post-item__big-photo-img',
+        time: '.post-item__info'
     }, 
 
     korona: {
@@ -40,7 +44,8 @@ const elems = {
         description: '.post-item__text',
         description_2: '.post-item__text div',
         authorName: '.article__author',
-        image: '.post-item__big-photo-img'
+        image: '.post-item__big-photo-img',
+        time: '.post-item__info'
     }
 }
 
