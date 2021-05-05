@@ -48,7 +48,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksUnian(url, className, maxSize = 20) {
+function parseLinksUnian(url, className, maxSize = 30) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -84,7 +84,7 @@ async function getPostsUnian(links) {
             posts.push(post)
             axios.post('https://60343d97843b1500179324f4.mockapi.io/postsUnian', post)
             await log(i, count, 1000)
-            console.log(post)
+            // console.log(post)
         }
         
         return new Promise((resolve, reject) => {

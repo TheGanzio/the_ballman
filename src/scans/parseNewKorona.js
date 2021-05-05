@@ -21,8 +21,8 @@ const log = (i, count, ms) => {
       unirest.get(url).end(({ body, error }) => {
         let id = 0
         const $ = cheerio.load(body);
-  
-        const title =$(elems.title).text().trim()
+        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+            const title =$(elems.title).text().trim()
             const preDescription =$(elems.preDescription).text().trim()
             const description =$(elems.description).text().trim()
             const authorName =$(elems.authorName).text().trim().trim()
@@ -30,6 +30,7 @@ const log = (i, count, ms) => {
     
                 const post = {
                 id: id,
+                currenctDate: currentDate,
                 url: url,
                 title: title,
                 preDescription: preDescription,
@@ -47,7 +48,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKorona(url, className, maxSize = 20) {
+function parseLinksKorona(url, className, maxSize = 30) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -73,9 +74,6 @@ async function getPostsKorona(links) {
     let index = 0
     let count = links.length
 
-    let currentData = '';
-    let currentPost = []
-
         for (let i=0; i<count; i++) {
             const post = await parseNewKorona(links[i], elems.korona).then(post => post)
             index = index++
@@ -99,8 +97,8 @@ async function getPostsKorona(links) {
             }
 
             posts.push(post)
-            await log(i, count, 1000)
-            console.log(post)
+            await log(i, count, 5000)
+            // console.log(post)
         }
     
         return new Promise((resolve, reject) => {

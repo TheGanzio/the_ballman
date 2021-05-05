@@ -1,10 +1,10 @@
 const elems = {
     hromadske: {
-        title: '.PostHeader-title',
-        preDescription: '.PostContent-leadTextWrapper',
-        description: '.PostPublication-text',
-        authorName:'.PostAuthor-name',
-        image: '.PostContent img'
+        title: '.newsFull_header h1',
+        preDescription: '.article_news.next-article h2',
+        description: '.newsFull_text',
+        authorName:'.newsFull_header_infoItems .author_name',
+        image: '.newsFull_body img'
     },
 
     tsn: {
@@ -27,10 +27,10 @@ const elems = {
         title: '.post-item__title',
         time: '.post__time',
         preDescription: '.post-item__text p',
-        description: 'post-item__text',
+        description: '.post-item__text',
         description_2: '.post-item__text div',
-        authorName: 'article__author',
-        image: '.post-item clearfix img'
+        authorName: '.article__author',
+        image: '.post-item__big-photo-img'
     }, 
 
     korona: {

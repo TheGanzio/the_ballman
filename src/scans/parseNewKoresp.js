@@ -21,6 +21,7 @@ const log = (i, count, ms) => {
       unirest.get(url).end(({ body, error }) => {
         let id = 0
         const $ = cheerio.load(body);
+        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
   
         const title =$(elems.title).text().trim()
             const preDescription =$(elems.preDescription).text().trim()
@@ -30,6 +31,7 @@ const log = (i, count, ms) => {
     
                 const post = {
                 id: id,
+                currentDate: currentDate,
                 url: url,
                 title: title,
                 preDescription: preDescription,
@@ -47,7 +49,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKoresp(url, className, maxSize = 20) {
+function parseLinksKoresp(url, className, maxSize = 30) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -69,27 +71,33 @@ function parseLinksKoresp(url, className, maxSize = 20) {
 
 async function getPostsKoresp(links) {
     let posts = []
+    let titles = []
+    let index = 0
     let count = links.length
-
-    let currentData = '';
-    let currentPost = []
     
         for (let i=0; i<count; i++) {
             const post = await parseNewKoresp(links[i], elems.koresp).then(post => post)
+            index = index++
+            titles.push(post.title)
             if (post.image == undefined) {
                 post.image = 'https://www.5.ua/media/pictures/original/146560.jpg?t=1534932390'
             }
             if(post.authorName == '') {
                 post.authorName = 'korrespondent.net'
             }
-            if(post.description == '') {
-                post.description = post.desription_2
-            } else {
-                post.description = post.description
+
+            if (titles[i] == titles[i-1]) {
+                console.log('Duplicate')
+                post.title = ''
             }
-            post.id = post.id+1
+
+            if (post.title == '') {
+                continue
+            }
+
             posts.push(post)
             await log(i, count, 1000)
+            // console.log(post)
         }
     
         return new Promise((resolve, reject) => {

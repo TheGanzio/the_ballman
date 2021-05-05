@@ -18,41 +18,37 @@ const log = (i, count, ms) => {
 
  function parseNewHromadske(url, elems) {
     return new Promise((resolve, reject) => {
-      unirest.get(url).end(({ body, error }) => {
-        // let i = 1
-        // let count = 1
-        // log(i, count, 5000)
-        const $ = cheerio.load(body);
-        
-        
-        let id = 0
-
-            const title =$(elems.title).text().trim()
-            const preDescription =$(elems.preDescription).text().trim()
-            const description =$(elems.description).text().trim()
-            const authorName =$(elems.authorName).text().trim().trim()
-            const image =$(elems.image).attr('src')
+        unirest.get(url).end(({ body, error }) => {
+        let $ = cheerio.load(body);
+        let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
+        $ = cheerio.load(body);
     
-                const post = {
-                id: id,
-                url: url,
-                title: title,
-                preDescription: preDescription,
-                description: description,
-                authorName: authorName,
-                image: image
-                
-                
-            }
-        if (error) {
-          return reject(error);
-        }
-        resolve(post);
+          const title =$(elems.title).text().trim()
+              const preDescription =$(elems.preDescription).text().trim()
+              const description =$(elems.description).text().trim()
+              const authorName =$(elems.authorName).text().trim().trim()
+              const image =$(elems.image).attr('src')
+      
+                  const post = {
+                  url: url,
+                  currentDate: currentDate,
+                  title: title,
+                  preDescription: preDescription,
+                  description: description,
+                  authorName: authorName,
+                  image: image
+                  
+                  
+              }
+          if (error) {
+            return reject(error);
+          }
+          resolve(post);
+        });
       });
-    });
-  }
+    }
 
-function parseLinksHromadske(url, className, maxSize = 20) {
+function parseLinksHromadske(url, className, maxSize = 100) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -62,7 +58,7 @@ function parseLinksHromadske(url, className, maxSize = 20) {
             const $ = cheerio.load(body)
     
             $(className).each((i, e) => {
-                if (i +1 <= maxSize) links.push('https://hromadske.ua' +$(e).attr('href'))
+                if (i +1 <= maxSize) links.push($(e).attr('href'))
             })
     
             resolve(links)
@@ -74,13 +70,26 @@ function parseLinksHromadske(url, className, maxSize = 20) {
 
 async function getPostsHromadske(links) {
     let posts = []
-        let count = links.length
+    let titles = []
+    let index = 0
+    let count = links.length
         for (let i=0; i<count; i++) {
             const post = await parseNewHromadske(links[i], elems.hromadske).then(post => post)
-            if (post.image == undefined) {
-                post.image = 'https://www.5.ua/media/pictures/original/146560.jpg?t=1534932390'
+            index = index++
+            titles.push(post.title)
+            // if (post.image == undefined) {
+            //     post.image = 'https://www.5.ua/media/pictures/original/146560.jpg?t=1534932390'
+            // }
+
+            if (titles[i] == titles[i-1]) {
+                console.log('Duplicate')
+                post.title = ''
             }
-            post.id = post.id+1
+
+            if (post.title == '') {
+                continue
+            }
+
             posts.push(post)
             await log(i, count, 1000)
             console.log(post)
