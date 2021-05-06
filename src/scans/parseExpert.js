@@ -16,19 +16,21 @@ const log = (i, count, ms) => {
     
 }
 
- function parseNewKorona(url, elems) {
+ function parseNewExpert(url, elems) {
     return new Promise((resolve, reject) => {
       unirest.get(url).end(({ body, error }) => {
         let id = 0
         const $ = cheerio.load(body);
         let currentDate = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-            const title =$(elems.title).text().trim()
+  
+        const title =$(elems.title).text().trim()
             const preDescription =$(elems.preDescription).text().trim()
             const description =$(elems.description).text().trim()
             const authorName =$(elems.authorName).text().trim().trim()
-            const image =$(elems.image).attr('src')
+            const image =$(elems.image).attr('style')
             const time =$(elems.time).text().trim()
             const readNext = '...Читати далі'
+    
     
                 const post = {
                 id: id,
@@ -51,18 +53,20 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKorona(url, className, maxSize = 3) {
+function parseLinksExpert(url, className, maxSize = 5) {
     return new Promise((resolve, reject) => {
         let links = []
+        
 
         unirest.get(url).end(({ body, error }) => {
             if (error) reject(error)
-
             const $ = cheerio.load(body)
     
             $(className).each((i, e) => {
-                if (i +1 <= maxSize) links.push($(e).attr('href'))
+                if (i +1 <= maxSize) links.push('https://www.slovoidilo.ua' + $(e).attr('href'))
             })
+
+            console.log('Link: '+links)
     
             resolve(links)
             if (!links.length) reject({error: 'empty'})
@@ -71,21 +75,24 @@ function parseLinksKorona(url, className, maxSize = 3) {
 }
 
 
-async function getPostsKorona(links) {
+async function getPostsExpert(links) {
     let posts = []
     let titles = []
     let index = 0
     let count = links.length
-
+    
         for (let i=0; i<count; i++) {
-            const post = await parseNewKorona(links[i], elems.korona).then(post => post)
+            const post = await parseNewExpert(links[i], elems.expert).then(post => post)
             index = index++
             titles.push(post.title)
-
-            if (post.image == undefined) {
-                post.image = 'https://www.ratusha.if.ua/wp-content/uploads/2020/09/5ebcef3f2c023-covid19smejpg.jpg'
-            }
-
+            let imageLink = ''
+            
+            imageLink = post.image.split("background-image:url('//")[1]
+            imageLink = imageLink.split("png")[0]
+            console.log('Image link ======' + imageLink)
+            post.image = imageLink + 'png'
+            console.log('Image link ======' + imageLink)
+            
             if(post.authorName == '') {
                 post.authorName = 'korrespondent.net'
             }
@@ -95,19 +102,19 @@ async function getPostsKorona(links) {
                 post.title = ''
             }
 
-            
+
             if (post.title == '') {
                 continue
             }
-
-            let str = post.time
-            let str1 = str.split(',')[1]
-            let str2 = str.split('1, ')[1]
-            post.time = str1 + ', ' + str2
+            
+            // let str = post.time
+            // let str1 = str.split(',')[1]
+            // let str2 = str.split('1, ')[1]
+            // post.time = str1 + ', ' + str2
 
             posts.push(post)
-            await log(i, count, 5000)
-            // console.log(post)
+            await log(i, count, 1000)
+            console.log(post)
         }
     
         return new Promise((resolve, reject) => {
@@ -116,4 +123,4 @@ async function getPostsKorona(links) {
     })
 }
 
-export  { parseNewKorona, parseLinksKorona, getPostsKorona }
+export  { parseNewExpert, parseLinksExpert, getPostsExpert }

@@ -46,6 +46,20 @@ const elems = {
         authorName: '.article__author',
         image: '.post-item__big-photo-img',
         time: '.post-item__info'
+    },
+
+    moz: {
+        all: '.one-field.light-box.info-count.flex-w-50 div',
+        today: '.one-field.light-pink-box.info-count.flex-w-50 div'
+    },
+
+    expert: {
+        title: '.publication h1',
+        time: '.thematic_and_date_cont .date',
+        preDescription: '.article-body',
+        description: '.article-body',
+        authorName: '.caption .name',
+        image: '.article-body .image',
     }
 }
 

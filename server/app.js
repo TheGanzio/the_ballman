@@ -30,10 +30,17 @@ const PostsSchema = new mongoose.Schema({
     image: String
 })
 
+const MozSchema = new mongoose.Schema({
+    all: String,
+    today: String
+  })
+
 const Ukraine = mongoose.model('Ukraine', PostsSchema)
 const IT = mongoose.model('IT', PostsSchema)
 const World = mongoose.model('World', PostsSchema)
 const Korona = mongoose.model('Korona', PostsSchema)
+const Moz = mongoose.model('Moz', MozSchema)
+const Expert = mongoose.model('Expert', MozSchema)
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -46,7 +53,7 @@ app.use('/ukr', (req, res) => {
             res.json(data);
         })
         .catch((error) => {
-            console.log('error: ', daerrorta);
+            console.log('error: ', error);
         });
 });
 
@@ -58,7 +65,7 @@ app.use('/IT', (req, res) => {
               res.json(data);
           })
           .catch((error) => {
-              console.log('error: ', daerrorta);
+              console.log('error: ', error);
           });
   });
 
@@ -70,7 +77,7 @@ app.use('/IT', (req, res) => {
               res.json(data);
           })
           .catch((error) => {
-              console.log('error: ', daerrorta);
+              console.log('error: ', error);
           });
   });
 
@@ -82,7 +89,31 @@ app.use('/IT', (req, res) => {
               res.json(data);
           })
           .catch((error) => {
-              console.log('error: ', daerrorta);
+              console.log('error: ', error);
+          });
+  });
+
+  app.use('/moz', (req, res) => {
+    console.log('MOZ: !')
+        Moz.find()
+          .then((data) => {
+              console.log('Data: ', data);
+              res.json(data);
+          })
+          .catch((error) => {
+              console.log('error: ', error);
+          });
+  });
+
+  app.use('/expert', (req, res) => {
+    console.log('Expert: !')
+        Expert.find()
+          .then((data) => {
+              console.log('Data: ', data);
+              res.json(data);
+          })
+          .catch((error) => {
+              console.log('error: ', error);
           });
   });
 
