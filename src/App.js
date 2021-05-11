@@ -10,6 +10,9 @@ import './styles/index.css'
 
 
 
+
+
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -116,11 +119,11 @@ class App extends Component {
   genreText(s) {
     switch (s) {
       case 'IT':
-        return 'Новини IT та науки'
+        return 'IT та наука'
       case 'UKR':
-        return 'Новини України'
+        return 'Україна'
       case 'COR':
-        return 'Новини Коронавірусу'
+        return 'Коронавірус'
       case 'WORLD':
         return 'Новини світу'
       case 'EXP':
@@ -135,20 +138,27 @@ class App extends Component {
     if (this.props.genre.genre === 'UKR') {
     return (
       <Container>
-        <h1 className="ui header">The BellMan</h1>
-        <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) } </h3>
-        <div>
+       <div class="main"></div>
+          <div class="footer">
+          <h1 class="h1" >The BellMan</h1>
+          </div>
+          
+          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div>
         <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
+            <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
         </Button.Group>
         </div>
         <Item.Group divided>
-        {
-          ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+        {!items.length ? (
+          <span className="loading">
+          Loading...
+          </span>
+        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
             <Post
             key={key}
             readNext={readNext}
@@ -163,29 +173,33 @@ class App extends Component {
           ))
         }
         </Item.Group>
-        {/* <div class="ui inverted vertical footer segment form-page">
-  <div class="ui container">
-    The BellMan 2021. All Rights Reserved
-  </div>
-</div> */}
+        {/* <div class="main"></div>
+          <div class="footer">
+          The BellMan 2021
+          </div> */}
       </Container>
     )} else if (this.props.genre.genre === 'IT') {
       return (
         <Container>
-          <h1 className="ui header">The BellMan</h1>
-          <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) } </h3>
+          <div class="main"></div>
+          <div class="footer">
+          <h1 class="h1" >The BellMan</h1>
+          </div>
+          
+          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
+            <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona()}>Коронавірус</Button>
             </Button.Group>
           </div>
           <Item.Group divided>
-          {
-            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          {!items.length ? (
+          <span className="loading">Loading...</span>
+        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
                 time={time}
@@ -200,29 +214,33 @@ class App extends Component {
             ))
           }
           </Item.Group>
-          {/* <div class="ui inverted vertical footer segment form-page">
-  <div class="ui container">
-  The BellMan 2021. All Rights Reserved
-  </div>
-</div> */}
+          {/* <div class="main"></div>
+          <div class="footer">
+          The BellMan 2021
+          </div> */}
         </Container>
     )} else if (this.props.genre.genre === 'WORLD') {
       return (
         <Container>
-          <h1 className="ui header">The BellMan</h1>
-          <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) }</h3>
+          <div class="main"></div>
+          <div class="footer">
+          <h1 class="h1" >The BellMan</h1>
+          </div>
+          
+          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
+            <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('COR')  && this.fetchPostsKorona() }>Коронавірус</Button>
             </Button.Group>
           </div>
           <Item.Group divided>
-          {
-            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          {!items.length ? (
+          <span className="loading">Loading...</span>
+        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
                 time={time}
@@ -237,43 +255,35 @@ class App extends Component {
             ))
           }
           </Item.Group>
-          {/* <div class="ui inverted vertical footer segment form-page">
-  <div class="ui container">
-  The BellMan 2021. All Rights Reserved
-  </div>
-</div> */}
+          {/* <div class="main"></div>
+          <div class="footer">
+          The BellMan 2021
+          </div> */}
         </Container>
       )
     } else if (this.props.genre.genre === 'COR') {
       return (
         <Container>
-          <h1 className="ui header">The BellMan</h1>
-          <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) } </h3>
+          <div class="main"></div>
+          <div class="footer">
+          <h1 class="h1" >The BellMan</h1>
+          </div>
+          
+          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
           <div>
           <Button.Group basic className='ui vertical buttons'>
-            <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
+          <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
+            <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
             </Button.Group>
           </div>
-
-          {/* <Table>
-          {
-            ( items.map(({ all, today }, key1) => (
-              <Stat
-              key1={key1}
-              all={all}
-              today={today}
-              /> )
-            ))
-          }
-          </Table> */}
           
           <Item.Group divided>
-          {
-            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          {!items.length ? (
+          <span className="loading">Loading...</span>
+        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
               key={key}
               time={time}
@@ -288,31 +298,35 @@ class App extends Component {
             ))
           }
           </Item.Group>
-          {/* <div class="ui inverted vertical footer segment form-page">
-  <div class="ui container">
-  The BellMan 2021. All Rights Reserved
-  </div>
-</div> */} 
+          {/* <div class="main"></div>
+          <div class="footer">
+          The BellMan 2021
+          </div> */}
         </Container>
       ) 
     } else if (this.props.genre.genre === 'EXP') {
       return (
         <Container>
-          <h1 className="ui header">The BellMan</h1>
-          <h3 className="ui header">Розділ: { this.genreText(this.props.genre.genre) } </h3>
+          <div class="main"></div>
+          <div class="footer">
+          <h1 class="h1" >The BellMan</h1>
+          </div>
+          
+          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
+            <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
             </Button.Group>
           </div>
           
           <Item.Group divided>
-          {
-            ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          {!items.length ? (
+          <span className="loading">Loading...</span>
+        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
               key={key}
               time={time}
@@ -327,11 +341,10 @@ class App extends Component {
             ))
           }
           </Item.Group>
-          {/* <div class="ui inverted vertical footer segment form-page">
-  <div class="ui container">
-  The BellMan 2021. All Rights Reserved
-  </div>
-</div> */} 
+          {/* <div class="main"></div>
+          <div class="footer">
+          The BellMan 2021
+          </div> */}
         </Container>
       ) 
     } 

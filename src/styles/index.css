@@ -51,3 +51,29 @@ h1 {
   outline: 5px;
   border: none;
 }
+
+.main{min-height:100%; 
+  padding-bottom:60px; 
+  box-sizing:border-box;}
+.footer {
+background-color: #4682B4;
+position: absolute;
+/* bottom: 0;   */
+margin-top: -50px; /* add this */
+left: 0;
+width: 100%;
+padding: 15px 0;
+}
+
+.h1 {
+  color: aliceblue;
+  text-align: center;
+}
+
+.loading {
+  width: 100cm;
+  text-align: center;
+}
+
+
+

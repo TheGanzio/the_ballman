@@ -53,7 +53,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksExpert(url, className, maxSize = 5) {
+function parseLinksExpert(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
         
@@ -90,7 +90,8 @@ async function getPostsExpert(links) {
             imageLink = post.image.split("background-image:url('//")[1]
             imageLink = imageLink.split("png")[0]
             console.log('Image link ======' + imageLink)
-            post.image = imageLink + 'png'
+            imageLink = imageLink + 'png'
+            post.image = imageLink.split('media.')[1]
             console.log('Image link ======' + imageLink)
             
             if(post.authorName == '') {
@@ -101,6 +102,8 @@ async function getPostsExpert(links) {
                 console.log('Duplicate')
                 post.title = ''
             }
+
+            post.image = 'https://ooek.od.ua/pictures/content_images/eksp_dumka_title_img.jpg'
 
 
             if (post.title == '') {

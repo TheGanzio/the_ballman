@@ -38,7 +38,7 @@ const log = (i, count, ms) => {
       });
     }
 
-function parseLinksMoz(url, maxSize = 1) {
+function parseLinksMoz(url, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = url
         console.log(url)
