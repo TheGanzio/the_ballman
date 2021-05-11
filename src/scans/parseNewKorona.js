@@ -51,7 +51,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKorona(url, className, maxSize = 50 ) {
+function parseLinksKorona(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 
