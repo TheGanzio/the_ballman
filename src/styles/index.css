@@ -53,13 +53,14 @@ h1 {
 }
 
 .main{min-height:100%; 
-  padding-bottom:60px; 
+  padding-bottom:50px; 
   box-sizing:border-box;}
 .footer {
 background-color: #4682B4;
 position: absolute;
 /* bottom: 0;   */
-margin-top: -50px; /* add this */
+margin-top: -50px;
+margin-bottom: 10px; /* add this */
 left: 0;
 width: 100%;
 padding: 15px 0;
@@ -73,6 +74,17 @@ padding: 15px 0;
 .loading {
   width: 100cm;
   text-align: center;
+}
+
+.ui.inverted.segment {
+  top: 5px;
+  align-content: center;
+  background-color: #5F9EA0;
+}
+
+.secondHeader {
+  text-align: center;
+  text-size-adjust: 10px;
 }
 
 

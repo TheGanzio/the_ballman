@@ -142,8 +142,7 @@ class App extends Component {
           <div class="footer">
           <h1 class="h1" >The BellMan</h1>
           </div>
-          
-          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
         <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
@@ -182,7 +181,7 @@ class App extends Component {
           <h1 class="h1" >The BellMan</h1>
           </div>
           
-          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
@@ -221,7 +220,7 @@ class App extends Component {
           <h1 class="h1" >The BellMan</h1>
           </div>
           
-          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
@@ -261,7 +260,7 @@ class App extends Component {
           <h1 class="h1" >The BellMan</h1>
           </div>
           
-          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
           <Button.Group basic className='ui vertical buttons'>
           <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
@@ -302,7 +301,7 @@ class App extends Component {
           <h1 class="h1" >The BellMan</h1>
           </div>
           
-          <h3 className="ui header">{ this.genreText(this.props.genre.genre) } </h3>
+          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
           <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
