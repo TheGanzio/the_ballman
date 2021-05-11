@@ -141,7 +141,7 @@ function getData() {
 
 getData()
 
-setInterval(getData, 1200000)
+setInterval(getData, 3600000)
 
 
 export { getData }
