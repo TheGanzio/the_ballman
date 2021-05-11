@@ -96,8 +96,6 @@ async function getPostsHromadske(links) {
                 post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
             }
 
-            
-
             posts.push(post)
             await log(i, count, 1000)
             // console.log(post)

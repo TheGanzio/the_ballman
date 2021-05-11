@@ -56,7 +56,8 @@ app.use('/ukr', (req, res) => {
   console.log('Api')
   Ukraine.find()
         .then((data) => {
-            console.log('Data: ', data);
+            // console.log('Data: ', data);
+            console.log('Ukraine')
             res.json(data);
         })
         .catch((error) => {
@@ -68,7 +69,8 @@ app.use('/IT', (req, res) => {
     console.log('Api')
         IT.find()
           .then((data) => {
-              console.log('Data: ', data);
+              //console.log('Data: ', data);
+              console.log('IT')
               res.json(data);
           })
           .catch((error) => {
@@ -80,7 +82,8 @@ app.use('/IT', (req, res) => {
     console.log('Api')
         World.find()
           .then((data) => {
-              console.log('Data: ', data);
+              //console.log('Data: ', data);
+              console.log('World')
               res.json(data);
           })
           .catch((error) => {
@@ -92,7 +95,8 @@ app.use('/IT', (req, res) => {
     console.log('Api')
         Korona.find()
           .then((data) => {
-              console.log('Data: ', data);
+              //console.log('Data: ', data);
+              console.log('Korona')
               res.json(data);
           })
           .catch((error) => {
@@ -104,7 +108,8 @@ app.use('/IT', (req, res) => {
     console.log('MOZ: !')
         Moz.find()
           .then((data) => {
-              console.log('Data: ', data);
+              //console.log('Data: ', data);
+              console.log('Get')
               res.json(data);
           })
           .catch((error) => {
@@ -116,7 +121,8 @@ app.use('/IT', (req, res) => {
     console.log('Expert: !')
         Expert.find()
           .then((data) => {
-              console.log('Data: ', data);
+              //console.log('Data: ', data);
+              console.log('Expert')
               res.json(data);
           })
           .catch((error) => {

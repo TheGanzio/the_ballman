@@ -85,7 +85,33 @@ padding: 15px 0;
 .secondHeader {
   text-align: center;
   text-size-adjust: 10px;
+  
+  
 }
+
+.ui.inverted.segment {
+  
+  position: relative;
+  align-content: center;
+  
+}
+
+.ui.compact.menu {
+  width: 50%;
+  left: 25%;
+  position: relative;
+  background-color: #F0F8FF;
+  
+
+}
+
+.ui.simple.dropdown.item {
+  width: 100%;
+  align-items: center;
+  margin:0 auto;
+  text-align: center;
+}
+
 
 
 

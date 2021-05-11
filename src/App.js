@@ -7,12 +7,6 @@ import { Container, Header, Button, Label, Item, Table } from 'semantic-ui-react
 import 'semantic-ui-css/semantic.min.css'
 import './styles/index.css'
 
-
-
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props)
@@ -142,15 +136,29 @@ class App extends Component {
           <div class="footer">
           <h1 class="h1" >The BellMan</h1>
           </div>
-          <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
+          <div class="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
+          
           <div>
-        <Button.Group basic className='ui vertical buttons'>
+          <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+    Розділ
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+    </div>
+  </div>
+</div>
+        {/* <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-        </Button.Group>
+        </Button.Group> */}
         </div>
         <Item.Group divided>
         { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
@@ -183,13 +191,26 @@ class App extends Component {
           
           <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
-          <Button.Group basic className='ui vertical buttons'>
+          <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+    Розділ
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+    </div>
+  </div>
+</div>
+          {/* <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            </Button.Group>
+            </Button.Group> */}
           </div>
           <Item.Group divided>
           { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
@@ -222,13 +243,26 @@ class App extends Component {
           
           <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
-          <Button.Group basic className='ui vertical buttons'>
+          <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+    Розділ
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+    </div>
+  </div>
+</div>
+          {/* <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            </Button.Group>
+            </Button.Group> */}
           </div>
           <Item.Group divided>
           { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
@@ -262,13 +296,26 @@ class App extends Component {
           
           <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
-          <Button.Group basic className='ui vertical buttons'>
+          <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+    Розділ
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+    </div>
+  </div>
+</div>
+          {/* <Button.Group basic className='ui vertical buttons'>
           <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            </Button.Group>
+            </Button.Group> */}
           </div>
           
           <Item.Group divided>
@@ -303,13 +350,27 @@ class App extends Component {
           
           <div className="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
           <div>
-          <Button.Group basic className='ui vertical buttons'>
+            
+          <div class="ui compact menu">
+          <div class="ui simple dropdown item">
+    Розділ
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+    </div>
+  </div>
+</div>
+          {/* <Button.Group basic className='ui vertical buttons'>
             <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
             <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-            </Button.Group>
+            </Button.Group> */}
           </div>
           
           <Item.Group divided>
