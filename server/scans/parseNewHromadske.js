@@ -96,7 +96,7 @@ async function getPostsHromadske(links) {
                 post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
             }
 
-            post.image = 'https://ooek.od.ua/pictures/content_images/eksp_dumka_title_img.jpg'
+            post.image = 'https://i1.wp.com/vidviday.ua/blog/wp-content/uploads/2016/01/Dyzajn-bez-nazvy-kopiya-kopiya-14.jpg?fit=1200%2C801&ssl=1'
 
             posts.push(post)
             await log(i, count, 1000)
