@@ -53,7 +53,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksKoresp(url, className, maxSize = 3) {
+function parseLinksKoresp(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 

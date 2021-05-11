@@ -52,7 +52,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksUnian(url, className, maxSize = 3) {
+function parseLinksUnian(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 

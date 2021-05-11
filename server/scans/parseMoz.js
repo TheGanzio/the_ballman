@@ -53,7 +53,7 @@ async function getPostsMoz(links) {
         for (let i=0; i<count; i++) {
             const post = await parseMoz(links, elems.moz).then(post => post)
             posts.push(post)
-            console.log(post)
+            // console.log(post)
             let str = post.all
             let str1 = str.split(' ')[0]
             let str2 = str.split('1, ')[1]
