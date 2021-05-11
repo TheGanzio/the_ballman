@@ -91,7 +91,7 @@ async function getPostsKorona(links) {
             }
 
             if (titles[i] == titles[i-1]) {
-                console.log('Duplicate')
+                // console.log('Duplicate')
                 post.title = ''
             }
 

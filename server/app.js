@@ -1,6 +1,11 @@
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
+// const getData = require('../src/runScans')
+
+// getData()
+
+// setInterval(getData, 1200000)
 
 var app = express();
 
@@ -41,6 +46,8 @@ const World = mongoose.model('World', PostsSchema)
 const Korona = mongoose.model('Korona', PostsSchema)
 const Moz = mongoose.model('Moz', MozSchema)
 const Expert = mongoose.model('Expert', MozSchema)
+
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
