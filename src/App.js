@@ -154,11 +154,7 @@ class App extends Component {
         </Button.Group>
         </div>
         <Item.Group divided>
-        {!items.length ? (
-          <span className="loading">
-          Loading...
-          </span>
-        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+        { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
             <Post
             key={key}
             readNext={readNext}
@@ -197,9 +193,7 @@ class App extends Component {
             </Button.Group>
           </div>
           <Item.Group divided>
-          {!items.length ? (
-          <span className="loading">Loading...</span>
-        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
                 time={time}
@@ -238,9 +232,7 @@ class App extends Component {
             </Button.Group>
           </div>
           <Item.Group divided>
-          {!items.length ? (
-          <span className="loading">Loading...</span>
-        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
                 key={key}
                 time={time}
@@ -281,9 +273,7 @@ class App extends Component {
           </div>
           
           <Item.Group divided>
-          {!items.length ? (
-          <span className="loading">Loading...</span>
-        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
               key={key}
               time={time}
@@ -324,9 +314,7 @@ class App extends Component {
           </div>
           
           <Item.Group divided>
-          {!items.length ? (
-          <span className="loading">Loading...</span>
-        ) : ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+          {( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
               <Post
               key={key}
               time={time}
