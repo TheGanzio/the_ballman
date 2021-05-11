@@ -96,7 +96,6 @@ async function getPostsHromadske(links) {
                 post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
             }
 
-            post.image = 'https://www.5.ua/media/pictures/original/146560.jpg?t=1534932390'
 
             posts.push(post)
             await log(i, count, 1000)
