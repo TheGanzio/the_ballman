@@ -76,16 +76,13 @@ async function getPostsUnian(links) {
 
         for (let i=0; i<count; i++) {
             const post = await parseNewUnian(links[i], elems.nv).then(post => post)
-            // if (post.title === '') {
-            //     continue
-            // }
-            // if (links[i] === links[i+1]) {
-            //     continue
-            // }
+            if (post.title === '') {
+                continue
+            }
+            if (links[i] === links[i+1]) {
+                continue
+            }
 
-            // if (post.time == undefined) {
-            //     post.time = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-            // }
             posts.push(post)
             await log(i, count, 1000)
             console.log(post)
