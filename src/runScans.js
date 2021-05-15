@@ -64,7 +64,7 @@ function getData() {
     
     const saveResultUnian = json => {
       IT.deleteMany({}).then(() => console.log('IT posts are deleted')).catch(e => console.log(e))
-      // console.log(json)
+      console.log(json)
       IT.insertMany(JSON.parse(json), err => {
           console.log('Saved!')
           if (err) console.log(err)
@@ -98,13 +98,13 @@ function getData() {
           })
       }
     
-    parseLinksHromadske('https://www.obozrevatel.com/ukr/location/ukraina/', '.section_content.--related a')
+    parseLinksHromadske('https://www.obozrevatel.com/ukr/location/ukraina/', '.section_content.--related a') 
     .then(links => {
         getPostsHromadske(links).then(posts => saveResultHromadske(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
     })
     .catch(e => console.log(e))
     
-    parseLinksUnian('https://www.unian.ua/science', '.list-thumbs a')
+    parseLinksUnian('https://nv.ua/ukr/techno.html', '.unit-wrapper a')
     .then(links => {
         getPostsUnian(links).then(posts => saveResultUnian(JSON.stringify(posts, 0, 4))).catch(e => console.log(e))
     })
