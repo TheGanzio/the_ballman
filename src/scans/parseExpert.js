@@ -53,7 +53,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksExpert(url, className, maxSize = 6) {
+function parseLinksExpert(url, className, maxSize = 15) {
     return new Promise((resolve, reject) => {
         let links = []
         
@@ -87,12 +87,12 @@ async function getPostsExpert(links) {
             titles.push(post.title)
             let imageLink = ''
             
-            imageLink = post.image.split("background-image:url('//")[1]
-            imageLink = imageLink.split("png")[0]
-            // console.log('Image link ======' + imageLink)
-            imageLink = imageLink + 'png'
-            post.image = imageLink.split('media.')[1]
-            // console.log('Image link ======' + imageLink)
+            // imageLink = post.image.split("background-image:url('//")[1]
+            // imageLink = imageLink.split("png")[0]
+            // // console.log('Image link ======' + imageLink)
+            // imageLink = imageLink + 'png'
+            // post.image = imageLink.split('media.')[1]
+            // // console.log('Image link ======' + imageLink)
             
             if(post.authorName == '') {
                 post.authorName = 'korrespondent.net'
