@@ -75,7 +75,7 @@ async function getPostsUnian(links) {
         let count = links.length
 
         for (let i=0; i<count; i++) {
-            const post = await parseNewUnian(links[i], elems.nv).then(post => post)
+            const post = await parseNewUnian(links[i], elems.unian).then(post => post)
             if (post.title === '') {
                 continue
             }
