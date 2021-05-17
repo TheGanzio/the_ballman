@@ -18,12 +18,21 @@ const elems = {
     },
 
     unian: {
-        title: '.article  h1',
+        title: '.article__content__head__text h1',
         preDescription: '.article__like-h2',
-        description: '.article-text p',
-        authorName: '.article__author--bottom .article__author-name',
-        image: '.article-text img',
-        time: '.article__info .article__info-item.time'
+        description: '.content_wrapper p',
+        authorName: '.author_text a',
+        image: '.article__content__head_img img',
+        time: '.article__head__additional .article__head__additional_published'
+    },
+
+    nv: {
+        title: '.article__content__head__text h1',
+        preDescription: '.article__like-h2',
+        description: '.content_wrapper p',
+        authorName: '.author_text a',
+        image: '.article__content__head_img img',
+        time: '.article__head__additional .article__head__additional_published'
     },
 
     koresp: {

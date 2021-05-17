@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Post from './components/Post';
 import Stat from './components/Korona';
 import axios from 'axios'
+import $ from 'jquery'
 import { connect } from 'react-redux'
 import { Container, Header, Button, Label, Item, Table } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
@@ -144,7 +145,7 @@ class App extends Component {
     Розділ
     <i class="dropdown icon"></i>
     <div class="menu">
-      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() && $('.menu').hide() }>Україна</div>
       <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
       <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
       <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
