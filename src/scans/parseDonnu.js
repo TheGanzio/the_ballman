@@ -66,7 +66,7 @@ function parseLinksDonnu(url, className, maxSize = 50) {
                 if (i +1 <= maxSize) links.push($(e).attr('href'))
             })
 
-            console.log('Link: '+links)
+            // console.log('Link: '+links)
     
             resolve(links)
             if (!links.length) reject({error: 'empty'})
@@ -118,7 +118,7 @@ async function getPostsDonnu(links) {
 
             posts.push(post)
             await log(i, count, 1000)
-            console.log(post)
+            // console.log(post)
         }
     
         return new Promise((resolve, reject) => {
