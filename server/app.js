@@ -46,6 +46,7 @@ const World = mongoose.model('World', PostsSchema)
 const Korona = mongoose.model('Korona', PostsSchema)
 const Moz = mongoose.model('Moz', MozSchema)
 const Expert = mongoose.model('Expert', MozSchema)
+const Donnu = mongoose.model('Donnu', MozSchema)
 
 
 
@@ -123,6 +124,19 @@ app.use('/IT', (req, res) => {
           .then((data) => {
               //console.log('Data: ', data);
               console.log('Expert')
+              res.json(data);
+          })
+          .catch((error) => {
+              console.log('error: ', error);
+          });
+  });
+
+  app.use('/donnu', (req, res) => {
+    console.log('Donnu: !')
+        Donnu.find()
+          .then((data) => {
+              //console.log('Data: ', data);
+              console.log('Donnu')
               res.json(data);
           })
           .catch((error) => {

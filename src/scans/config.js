@@ -69,6 +69,14 @@ const elems = {
         description: '.article-body',
         authorName: '.caption .name',
         image: '.article-body .image',
+    },
+    donnu: {
+        title: '.post-header h1',
+        preDescription: '.article__like-h2',
+        description: '.et_pb_text_inner p',
+        authorName: '.et_pb_text_inner em',
+        image: '.post-thumbnail.header img',
+        time: '.post-meta.vcard span'
     }
 }
 
