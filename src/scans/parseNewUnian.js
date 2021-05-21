@@ -61,7 +61,7 @@ function parseLinksUnian(url, className, maxSize = 50) {
             $(className).each((i, e) => {
                 if (i +1 <= maxSize) links.push($(e).attr('href'))
             })
-            console.log('Links:' +links)
+           // console.log('Links:' +links)
             resolve(links)
             if (!links.length) reject({error: 'empty'})
         })
@@ -83,7 +83,7 @@ async function getPostsUnian(links) {
 
             posts.push(post)
             await log(i, count, 1000)
-            console.log(post)
+           // console.log(post)
         }
         
         return new Promise((resolve, reject) => {
