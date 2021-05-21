@@ -16,7 +16,7 @@ const log = (i, count, ms) => {
     
 }
 
- function parseNewUnian(url, elems) {
+ function parseNewATO(url, elems) {
     return new Promise((resolve, reject) => {
       unirest.get(url).end(({ body, error }) => {
         const $ = cheerio.load(body);
@@ -49,7 +49,7 @@ const log = (i, count, ms) => {
     });
   }
 
-function parseLinksUnian(url, className, maxSize = 50) {
+function parseLinksATO(url, className, maxSize = 50) {
     return new Promise((resolve, reject) => {
         let links = []
 
@@ -59,7 +59,7 @@ function parseLinksUnian(url, className, maxSize = 50) {
             const $ = cheerio.load(body)
     
             $(className).each((i, e) => {
-                if (i +1 <= maxSize) links.push($(e).attr('href'))
+                if (i +1 <= maxSize) links.push('https://www.ukrinform.ua'+$(e).attr('href'))
             })
             console.log('Links:' +links)
             resolve(links)
@@ -68,12 +68,12 @@ function parseLinksUnian(url, className, maxSize = 50) {
     })
 }
 
-async function getPostsUnian(links) {
+async function getPostsATO(links) {
     let posts = []
         let count = links.length
 
         for (let i=0; i<count; i++) {
-            const post = await parseNewUnian(links[i], elems.unian).then(post => post)
+            const post = await parseNewATO(links[i], elems.ato).then(post => post)
             if (post.title === '') {
                 continue
             }
@@ -81,10 +81,13 @@ async function getPostsUnian(links) {
                 continue
             }
 
+            post.authorName = 'ukrinform.ua'
+
             posts.push(post)
             await log(i, count, 1000)
             console.log(post)
         }
+
         
         return new Promise((resolve, reject) => {
         if (!posts.length) reject({error: 'empty'})
@@ -92,4 +95,4 @@ async function getPostsUnian(links) {
     })
 }
 
-export  { parseNewUnian, parseLinksUnian, getPostsUnian }
+export  { parseNewATO, parseLinksATO, getPostsATO }

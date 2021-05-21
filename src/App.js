@@ -117,6 +117,19 @@ class App extends Component {
       });
   }
 
+  fetchPostsATO() {
+    const { setPosts } = this.props;
+    setPosts([]);
+    axios.get('/ato')
+      .then(({data}) => {
+        setPosts(data)
+        console.log('ATO data has been received!!');
+      })
+      .catch(() => {
+        console.log('Error retrieving data!!!');
+      });
+  }
+
 
 
   UNSAFE_componentWillMount() {
@@ -137,7 +150,9 @@ class App extends Component {
       case 'EXP':
         return 'Експертна думка'
       case 'DONNU':
-        return 'ДОННУ ім. Василя Стуса'  
+        return 'ДОННУ ім. Василя Стуса'
+      case 'ATO':
+        return 'Війна'    
     }
   }
 
@@ -152,32 +167,25 @@ class App extends Component {
           <h1 class="h1" >The BellMan</h1>
           </div>
           <div class="ui inverted segment"><h3 className="secondHeader">{ this.genreText(this.props.genre.genre) }</h3> </div>
-          
           <div>
           <div class="ui compact menu">
           <div class="ui simple dropdown item">
     Розділ
     <i class="dropdown icon"></i>
     <div class="menu">
-      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() && $('.menu').hide() }>Україна</div>
-      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</div>
-      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</div>
-      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</div>
-      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
+      <div class="item" onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() && $('.menu').hide()}>Україна</div>
+      <div class="item" onClick={() => this.props.changeGenre('ATO') && this.fetchPostsATO()}>Війна</div>
+      <div class="item" onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp()}>Світ</div>
+      <div class="item" onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona()}>Коронавірус</div>
       <div class="item" onClick={() => this.props.changeGenre('DONNU') && this.fetchPostsDonnu()}>Донецький Національний Університет ім. Василя Стуса</div>
+      <div class="item" onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian()}>ІТ та наука</div>
+      <div class="item" onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</div>
     </div>
   </div>
 </div>
-        {/* <Button.Group basic className='ui vertical buttons'>
-            <Button class='ui button' onClick={() => this.props.changeGenre('UKR') && this.fetchPostsHromadske() }>Україна</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('IT') && this.fetchPostsUnian() }>ІТ</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('WORLD') && this.fetchPostsKoresp() }>Світ</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('COR') && this.fetchPostsKorona() }>Коронавірус</Button>
-            <Button class='ui button' onClick={() => this.props.changeGenre('EXP') && this.fetchPostsExpert()}>Експертна думка</Button>
-        </Button.Group> */}
-        </div>
-        <Item.Group divided>
-        { ( items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
+    </div>
+      <Item.Group divided>
+        {(items.map(({ url, title, description, preDescription, authorName, image, time, readNext }, key) => (
             <Post
             key={key}
             readNext={readNext}

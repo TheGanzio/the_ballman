@@ -47,6 +47,7 @@ const Korona = mongoose.model('Korona', PostsSchema)
 const Moz = mongoose.model('Moz', MozSchema)
 const Expert = mongoose.model('Expert', MozSchema)
 const Donnu = mongoose.model('Donnu', MozSchema)
+const ATO = mongoose.model('ATO', MozSchema)
 
 
 
@@ -137,6 +138,19 @@ app.use('/IT', (req, res) => {
           .then((data) => {
               //console.log('Data: ', data);
               console.log('Donnu')
+              res.json(data);
+          })
+          .catch((error) => {
+              console.log('error: ', error);
+          });
+  });
+
+  app.use('/ato', (req, res) => {
+    console.log('ATO: !')
+        ATO.find()
+          .then((data) => {
+              //console.log('Data: ', data);
+              console.log('ATO')
               res.json(data);
           })
           .catch((error) => {

@@ -77,6 +77,14 @@ const elems = {
         authorName: '.et_pb_text_inner em',
         image: '.post-thumbnail.header img',
         time: '.post-meta.vcard span'
+    },
+    ato: {
+        title: '.newsTitle',
+        preDescription: '.article__like-h2',
+        description: '.newsText p',
+        authorName: '.et_pb_text_inner em',
+        image: '.newsImage',
+        time: '.newsDate time'
     }
 }
 
